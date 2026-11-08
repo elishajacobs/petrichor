@@ -1,0 +1,680 @@
+/* ==========================================================
+   Petrichor · landingspagina · versie 2 · beeld voorop, blauw en inkt
+   Alle waarden komen uit de Brand Kit in Figma (pagina "Brand kit").
+   ========================================================== */
+
+:root {
+  /* Kleur (02 · Kleur) */
+  --color-primary: #395C7F;   /* titels, knoppen, tekstvlakken */
+  --color-ink: #16222E;       /* lopende tekst, donkere vlakken */
+  --color-white: #FFFFFF;     /* tekst op blauw, kaarten */
+  --color-mist: #F4F6F8;      /* pagina-achtergrond */
+  --color-light-blue: #DCE5EE;/* lichte knop, koele vlakken */
+  --color-sand: #E8E1D6;      /* accent: kleine vlakken en randen, geen sectie-achtergrond */
+  --color-sage: #C8D0C2;      /* zachte groene sectie (nooit tekst) */
+
+  /* Typografie (03 · Typografie) */
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+
+  /* Ruimte (07 · Web): 8 · 16 · 24 · 48 · 96 · 160 */
+  --space-xs: 8px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 48px;
+  --space-xl: 96px;
+  --space-xxl: 160px;
+
+  --gutter: var(--space-xl);
+  --section: var(--space-xxl);
+  --content: 1248px;          /* 1440 - 2 × 96 */
+  --nav-h: 96px;
+}
+
+@media (max-width: 1024px) {
+  :root { --gutter: var(--space-l); --section: 120px; }
+}
+@media (max-width: 720px) {
+  :root { --gutter: var(--space-m); --section: var(--space-xl); --nav-h: 72px; }
+}
+
+/* ---------- Basis ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--color-mist);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, video { display: block; max-width: 100%; }
+img { height: auto; }
+[hidden] { display: none !important; }
+h1, h2, h3, p, figure, blockquote, dl, dd, ol, ul { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.section--ink :focus-visible, .section--primary :focus-visible, .footer :focus-visible, .quiz__result :focus-visible { outline-color: var(--color-white); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: var(--space-s); top: -100px; z-index: 100; background: var(--color-primary); color: var(--color-white); padding: var(--space-xs) var(--space-s); }
+.skip:focus { top: var(--space-s); }
+
+.container { width: 100%; max-width: calc(var(--content) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); }
+.stack > * + * { margin-top: var(--space-m); }
+
+/* ---------- Typeschaal ---------- */
+/* Display · Syne SemiBold 80 / 105 % */
+.display { font-family: var(--font-display); font-weight: 600; font-size: clamp(44px, 6.4vw, 80px); line-height: 1.05; letter-spacing: -0.01em; color: var(--color-ink); }
+.display--primary { color: var(--color-primary); }
+/* H1 · Syne SemiBold 56 / 110 % */
+.h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.1; letter-spacing: -0.005em; color: var(--color-ink); }
+.h1--white { color: var(--color-white); }
+/* H2 · Syne SemiBold 36 / 120 % */
+.h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 3vw, 36px); line-height: 1.2; color: var(--color-ink); }
+.h2--white { color: var(--color-white); }
+/* H3 · Syne SemiBold 24 / 130 % */
+.h3 { font-family: var(--font-display); font-weight: 600; font-size: 24px; line-height: 1.3; color: var(--color-ink); }
+.h3--white { color: var(--color-white); }
+/* Slogan · Syne SemiBold 40 · kapitalen · +3 % (in donkerblauw vlak) */
+.slogan {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-s) var(--space-m);
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(30px, 3.4vw, 40px); line-height: 1.1; letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+/* Quote · Syne Medium 32 / 135 % */
+.quote { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.35; color: var(--color-ink); }
+.quote--white { color: var(--color-white); }
+/* Label · Syne SemiBold 14 · kapitalen · +20 % */
+.label { font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary); }
+.label--light { color: var(--color-light-blue); }
+/* zand als accent: kleine tags */
+.label--tag { display: inline-block; align-self: flex-start; padding: 8px 12px; background: var(--color-sand); color: var(--color-ink); }
+/* Body · Manrope Regular 18 / 160 % */
+.body { font-size: 18px; line-height: 1.6; }
+.body--light { color: var(--color-light-blue); }
+/* Body klein · Manrope Regular 15 / 150 % */
+.small { font-size: 15px; line-height: 1.5; }
+.small--light { color: var(--color-light-blue); }
+.small--muted { opacity: .7; }
+
+/* Woordmerk */
+.wordmark { font-family: var(--font-display); font-weight: 600; font-size: 24px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; color: var(--color-ink); }
+.wordmark--lg { font-size: clamp(28px, 3vw, 36px); color: var(--color-white); }
+
+/* ---------- Knoppen (04) · Manrope Bold 16 · kapitalen · +6 % · hoeken recht ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-xs);
+  padding: var(--space-s) var(--space-m);
+  font-family: var(--font-body); font-weight: 700; font-size: 16px; line-height: 1;
+  letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  border: 1px solid transparent; border-radius: 0;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.btn span { transition: transform .25s ease; }
+.btn:hover span { transform: translateX(3px); }
+.btn--primary { background: var(--color-primary); color: var(--color-white); }
+.btn--primary:hover { background: var(--color-ink); }
+.btn--primary:disabled { opacity: .45; cursor: not-allowed; }
+.btn--primary:disabled:hover { background: var(--color-primary); }
+.btn--primary:disabled span { transform: none; }
+.btn--light { background: var(--color-light-blue); color: var(--color-primary); }
+.btn--light:hover { background: var(--color-primary); color: var(--color-white); }
+/* Op een blauw vlak (resultaat geurtest) wordt de lichte knop wit */
+.quiz__result .btn--light:hover { background: var(--color-white); color: var(--color-primary); }
+.btn--outline { border-color: var(--color-primary); color: var(--color-primary); }
+.btn--outline:hover { background: var(--color-primary); color: var(--color-white); }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--space-s); }
+
+.linkbtn { font-size: 15px; color: inherit; text-decoration: none; }
+.linkbtn--caps { font-weight: 700; font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-primary); }
+.linkbtn--white { color: var(--color-white); }
+.linkbtn:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Navigatie ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--nav-h);
+  background: color-mix(in srgb, var(--color-mist) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: box-shadow .3s ease;
+}
+.nav.is-scrolled { box-shadow: 0 1px 0 var(--color-light-blue); }
+.nav__inner { height: 100%; max-width: calc(var(--content) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; }
+.nav__menu { display: flex; align-items: center; gap: 40px; }
+.nav__menu > a:not(.btn) { font-size: 18px; text-decoration: none; position: relative; }
+.nav__menu > a:not(.btn)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 1px; background: var(--color-primary); transition: right .3s ease; }
+.nav__menu > a:not(.btn):hover::after { right: 0; }
+.nav__toggle { display: none; width: 44px; height: 44px; position: relative; }
+.nav__toggle-bar { position: absolute; left: 10px; right: 10px; height: 1.5px; background: var(--color-ink); transition: transform .3s ease; }
+.nav__toggle-bar:nth-child(1) { top: 17px; }
+.nav__toggle-bar:nth-child(2) { top: 26px; }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
+
+@media (max-width: 960px) {
+  .wordmark { font-size: 20px; }
+  .nav__toggle { display: block; }
+  .nav__menu {
+    position: fixed; inset: var(--nav-h) 0 auto 0;
+    flex-direction: column; align-items: flex-start; gap: var(--space-m);
+    padding: var(--space-m) var(--gutter) var(--space-l);
+    background: var(--color-mist);
+    border-bottom: 1px solid var(--color-light-blue);
+    transform: translateY(-8px); opacity: 0; visibility: hidden;
+    transition: opacity .25s ease, transform .25s ease, visibility .25s;
+  }
+  .nav__menu.is-open { opacity: 1; transform: none; visibility: visible; }
+  .nav__menu > a:not(.btn) { font-size: 22px; }
+}
+
+
+/* ---------- Secties ---------- */
+.section { padding: var(--section) 0; }
+.section--white { background: var(--color-white); }
+.section--lightblue { background: var(--color-light-blue); }
+.section--sand { background: var(--color-sand); }
+.section--ink { background: var(--color-ink); color: var(--color-white); }
+.section--primary { background: var(--color-primary); color: var(--color-white); }
+
+.section-head { display: flex; flex-direction: column; gap: var(--space-s); margin-bottom: var(--space-l); max-width: 705px; }
+.section-head .h1 { margin-top: 14px; }
+.section-head .body { max-width: 640px; margin-top: var(--space-xs); }
+.section-head--row { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: var(--space-m); max-width: none; flex-wrap: wrap; }
+.section-head--row > div { display: flex; flex-direction: column; gap: var(--space-s); }
+
+/* Twee kolommen: beeld + tekst */
+.split { display: grid; grid-template-columns: 560fr 592fr; gap: var(--space-xl); align-items: center; }
+.split--form { grid-template-columns: 560fr 624fr; gap: 64px; align-items: start; }
+@media (max-width: 960px) {
+  .split, .split--form { grid-template-columns: 1fr; gap: var(--space-l); }
+}
+
+/* Uitsnedes zoals in Figma (tekst op het originele beeld valt weg) */
+.crop { position: relative; overflow: hidden; background: var(--color-light-blue); }
+.crop img { position: absolute; }
+.crop--story { aspect-ratio: 560 / 700; }
+.crop--story img { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+.crop--cover { aspect-ratio: 560 / 820; }
+.crop--cover img { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+
+
+/* ---------- Geurtest ---------- */
+.quiz { display: grid; grid-template-columns: 780fr 420fr; gap: var(--space-l); align-items: start; }
+.quiz__panel { background: var(--color-mist); padding: var(--space-l); }
+.quiz__progress { display: flex; justify-content: space-between; }
+.quiz__bar { height: 4px; background: var(--color-light-blue); margin: var(--space-m) 0; }
+.quiz__bar span { display: block; height: 100%; width: 33.333%; background: var(--color-primary); transition: width .4s ease; }
+.quiz__q { border: 0; padding: 0; margin: 0; min-width: 0; }
+.quiz__q legend { padding: 0; margin-bottom: var(--space-m); }
+.quiz__options { display: flex; flex-direction: column; gap: 20px; }
+.option { position: relative; display: flex; align-items: center; gap: var(--space-s); padding: 20px var(--space-m); background: var(--color-white); border: 1px solid var(--color-primary); cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.option input { position: absolute; opacity: 0; pointer-events: none; }
+.option__dot { width: 18px; height: 18px; flex: none; border: 1.5px solid var(--color-primary); border-radius: 50%; transition: background-color .2s ease, border-color .2s ease; }
+.option:hover { background: var(--color-light-blue); }
+.option:has(input:checked) { background: var(--color-primary); color: var(--color-white); }
+.option:has(input:checked) .option__dot { background: var(--color-white); border-color: var(--color-white); }
+.option:has(input:focus-visible) { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.quiz__nav { display: flex; justify-content: space-between; align-items: center; margin-top: var(--space-m); }
+.quiz__nav [data-quiz-prev][hidden] { display: inline; visibility: hidden; }
+
+.quiz__result { background: var(--color-primary); color: var(--color-white); padding: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-s); }
+.quiz__img { width: 100%; aspect-ratio: 356 / 300; object-fit: cover; }
+/* Voor de test: de vier geuren als keuze, na de test enkel jouw geur groot */
+.quiz__preview { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.quiz__preview li { position: relative; }
+.quiz__preview img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.quiz__preview span { position: absolute; left: 12px; bottom: 12px; padding: 8px 12px; background: var(--color-sand); color: var(--color-ink); font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.04em; }
+.quiz__result .h2 { margin-top: var(--space-xs); }
+.quiz__result.is-done .h2 { font-size: clamp(34px, 4.6vw, 56px); line-height: 1.1; }
+.quiz__result .btn { display: inline-block; white-space: normal; text-align: left; }
+.quiz__result .btn .nowrap { white-space: nowrap; }
+.btn__end { white-space: nowrap; }
+.quiz__result [hidden] { display: none; }
+
+@media (max-width: 960px) {
+  .quiz { grid-template-columns: 1fr; }
+  .quiz__panel { padding: var(--space-m); }
+  .quiz__result { padding: var(--space-m); }
+  /* Op mobiel staan de vier geuren boven de vragen, compact op één rij */
+  .quiz__result { order: -1; }
+  .quiz__result:not(.is-done) { gap: var(--space-xs); }
+  .quiz__preview { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .quiz__preview span { position: static; display: block; margin-top: 6px; padding: 0; background: none; color: var(--color-white); font-size: 13px; text-align: center; }
+  .quiz__result:not(.is-done) .h2 { font-size: 22px; }
+}
+
+
+/* ---------- Staaltje + formulier ---------- */
+.signup { background: var(--color-light-blue); padding: var(--space-l); display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.signup .slogan { margin-top: var(--space-xs); }
+.signup .label--tag { background: var(--color-white); }
+.story .label--tag { background: var(--color-primary); color: var(--color-white); }
+.ml-slot { width: 100%; }
+@media (max-width: 960px) { .signup__img { max-width: 560px; } }
+@media (max-width: 720px) { .signup { padding: var(--space-m); } }
+
+/* ----- MailerLite (formulier 53vmC6) -----
+   Zet het ingebedde MailerLite-formulier in de Brand Kit-stijl.
+   MailerLite gebruikt selectors met een ID + meerdere classes en !important,
+   daarom de dubbele ID (#mailerlite#mailerlite) om zeker te winnen. */
+#mailerlite#mailerlite .ml-form-embedContainer,
+#mailerlite#mailerlite .ml-form-embedWrapper,
+#mailerlite#mailerlite .ml-form-embedBody,
+#mailerlite#mailerlite .ml-form-successBody { width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important; background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+#mailerlite#mailerlite .ml-form-embedContainer * { font-family: var(--font-body) !important; }
+#mailerlite#mailerlite .ml-form-embedBody .ml-form-embedContent { display: none !important; } /* titel staat al boven het formulier */
+#mailerlite#mailerlite .ml-form-formContent { margin: 0 !important; }
+#mailerlite#mailerlite .ml-form-fieldRow { margin: 0 0 20px !important; padding: 0 !important; }
+
+/* Labels boven de velden · Manrope 15 / 150 % */
+#mailerlite#mailerlite .ml-field-group > label,
+#mailerlite#mailerlite .ml-form-fieldRow label:not(.checkbox) { display: block !important; margin: 0 0 var(--space-xs) !important; font-size: 15px !important; line-height: 1.5 !important; font-weight: 400 !important; color: var(--color-ink) !important; }
+
+/* Velden · rand in hoofdkleur, hoeken recht */
+#mailerlite#mailerlite input.form-control,
+#mailerlite#mailerlite select.custom-select {
+  height: auto !important; min-height: 0 !important;
+  padding: var(--space-s) !important;
+  border: 1px solid var(--color-primary) !important; border-radius: 0 !important;
+  background-color: var(--color-white) !important; color: var(--color-ink) !important;
+  font-size: 18px !important; line-height: 1.6 !important; box-shadow: none !important;
+}
+#mailerlite#mailerlite select.custom-select { padding-right: var(--space-l) !important; background-position: right var(--space-s) center !important; }
+#mailerlite#mailerlite input.form-control::placeholder { color: var(--color-ink) !important; opacity: .5 !important; }
+#mailerlite#mailerlite input.form-control:focus,
+#mailerlite#mailerlite select.custom-select:focus { outline: 2px solid var(--color-primary) !important; outline-offset: 0 !important; }
+
+/* Privacyzin en GDPR-vinkje · Manrope 15 / 150 % */
+#mailerlite#mailerlite .ml-form-embedPermissions { margin: 0 0 20px !important; }
+#mailerlite#mailerlite .ml-form-embedPermissions p,
+#mailerlite#mailerlite .ml-form-embedPermissionsContent p { margin: 0 !important; font-size: 15px !important; line-height: 1.5 !important; color: var(--color-ink) !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow { margin: 0 0 var(--space-m) !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow label.checkbox { display: block !important; position: relative !important; padding-left: 32px !important; margin: 0 !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow .label-description { position: static !important; padding: 0 !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow .label-description p { margin: 0 !important; font-size: 15px !important; line-height: 1.5 !important; color: var(--color-ink) !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow .label-description::before,
+#mailerlite#mailerlite .ml-form-checkboxRow .label-description::after { left: 0 !important; top: 2px !important; width: 20px !important; height: 20px !important; border-radius: 0 !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow .label-description::before { border: 1.5px solid var(--color-primary) !important; background: var(--color-white) !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow input[type="checkbox"]:checked + .label-description::before { background: var(--color-primary) !important; border-color: var(--color-primary) !important; }
+#mailerlite#mailerlite .ml-form-checkboxRow input[type="checkbox"]:focus-visible + .label-description::before { outline: 2px solid var(--color-primary) !important; outline-offset: 2px !important; }
+#mailerlite#mailerlite a { color: var(--color-primary) !important; }
+
+/* Knop · Primair, zo breed als de tekst */
+#mailerlite#mailerlite .ml-form-embedSubmit { float: none !important; width: auto !important; margin: 0 !important; text-align: left !important; }
+#mailerlite#mailerlite .ml-form-embedSubmit button {
+  width: auto !important; height: auto !important;
+  padding: var(--space-s) var(--space-m) !important;
+  background: var(--color-primary) !important; color: var(--color-white) !important;
+  border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  font-weight: 700 !important; font-size: 16px !important; line-height: 1 !important;
+  letter-spacing: 0.06em !important; text-transform: uppercase !important;
+  transition: background-color .25s ease;
+}
+#mailerlite#mailerlite .ml-form-embedSubmit button.primary::after { content: " →"; }
+#mailerlite#mailerlite .ml-form-embedSubmit button:hover { background: var(--color-ink) !important; }
+
+/* Foutmeldingen */
+#mailerlite#mailerlite .ml-error input.form-control,
+#mailerlite#mailerlite .ml-error select.custom-select { border-color: #A3392F !important; }
+#mailerlite#mailerlite .ml-error .label-description::before { border-color: #A3392F !important; }
+#mailerlite#mailerlite .ml-error .label-description p,
+#mailerlite#mailerlite .ml-error label { color: #A3392F !important; }
+
+/* Bevestiging na verzenden */
+#mailerlite#mailerlite .ml-form-successBody .ml-form-successContent { background: var(--color-light-blue) !important; padding: 20px var(--space-m) !important; }
+#mailerlite#mailerlite .ml-form-successBody h4 { margin: 0 0 var(--space-xs) !important; font-family: var(--font-display) !important; font-weight: 600 !important; font-size: 14px !important; line-height: 1 !important; letter-spacing: 0.2em !important; text-transform: uppercase !important; color: var(--color-primary) !important; }
+#mailerlite#mailerlite .ml-form-successBody p { margin: 0 !important; font-size: 18px !important; line-height: 1.6 !important; color: var(--color-ink) !important; }
+
+
+/* Knoppen op donkere vlakken */
+.btn--white { background: var(--color-white); color: var(--color-ink); }
+.btn--white:hover { background: var(--color-light-blue); }
+.btn--ghost { border-color: rgba(255, 255, 255, .6); color: var(--color-white); }
+.btn--ghost:hover { background: var(--color-white); color: var(--color-ink); }
+
+/* ---------- Instagram ---------- */
+.highlights { display: flex; gap: 32px; margin-bottom: 40px; flex-wrap: wrap; }
+.highlights li { display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 15px; line-height: 1.5; }
+/* Sfeerbeeld 9:16 in een rond kader met een ring in de hoofdkleur */
+.highlights img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--color-primary); padding: 3px; background: var(--color-mist); }
+.grid-posts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.grid-posts img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+@media (max-width: 720px) {
+  .grid-posts { grid-template-columns: repeat(2, 1fr); gap: var(--space-xs); }
+  .highlights { gap: var(--space-s); flex-wrap: nowrap; }
+  .highlights img { width: 64px; height: 64px; padding: 2px; border-width: 2px; }
+}
+
+/* ---------- Footer ---------- */
+.footer { background: var(--color-ink); color: var(--color-white); padding: var(--space-l) 0; }
+.footer__cols { display: grid; grid-template-columns: 564fr 180fr 180fr 180fr; gap: var(--space-l); }
+.footer__brand { display: flex; flex-direction: column; gap: 12px; }
+.footer nav { display: flex; flex-direction: column; gap: 12px; }
+.footer nav .label { margin-bottom: 0; }
+.footer nav a { font-size: 15px; line-height: 1.5; text-decoration: none; }
+.footer nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.footer__bottom { display: flex; justify-content: space-between; gap: var(--space-s); flex-wrap: wrap; margin-top: var(--space-l); padding-top: var(--space-m); border-top: 1px solid rgba(220, 229, 238, .18); font-size: 15px; line-height: 1.5; color: var(--color-light-blue); }
+@media (max-width: 860px) {
+  .footer__cols { grid-template-columns: repeat(3, 1fr); }
+  .footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) { .footer__cols { grid-template-columns: 1fr 1fr; } }
+
+
+/* ---------- Beweging: titels, beelden, hover ---------- */
+/* Titels schuiven woord per woord omhoog */
+[data-split] .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+[data-split] .w > span { display: inline-block; }
+.js [data-split] .w > span { translate: 0 105%; transition: translate .9s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i) * 70ms); }
+.js [data-split].is-visible .w > span { translate: none; }
+
+/* Beelden zoomen zacht uit wanneer ze in beeld komen, en schuiven trager mee bij scrollen */
+.js [data-zoom] img { scale: 1.16; transition: scale 1.8s cubic-bezier(.2, .7, .2, 1); }
+.js [data-zoom].is-visible img { scale: 1.08; }
+
+/* Hover */
+.quiz .option { transition: background .25s ease, border-color .25s ease, translate .25s ease; }
+.quiz .option:hover { translate: 4px 0; }
+
+/* ---------- Rustige verschijning bij scrollen ---------- */
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .9s ease, transform .9s ease; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+  .js .reveal { opacity: 1; transform: none; }
+  .js [data-split] .w > span, .js [data-zoom] img { translate: none; scale: 1; }
+}
+
+/* ==========================================================
+   Versie 2 · beeld voorop: grote foto's, collages, blauw en inkt
+   ========================================================== */
+
+body { background: var(--color-mist); }
+
+/* Navigatie: doorzichtig over de startfoto, inkt zodra je scrolt */
+.nav { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; color: var(--color-white); transition: background-color .3s ease; }
+.nav.is-scrolled { background: color-mix(in srgb, var(--color-mist) 78%, transparent); color: var(--color-ink); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--color-light-blue); }
+.nav.is-scrolled .wordmark { color: var(--color-ink); }
+.nav.is-scrolled .nav__toggle-bar { background: var(--color-ink); }
+.nav.is-scrolled .nav__menu > a:not(.btn)::after { background: var(--color-primary); }
+.nav.is-scrolled .btn--white { background: var(--color-primary); color: var(--color-white); }
+.nav.is-scrolled .btn--white:hover { background: var(--color-ink); }
+.nav.is-scrolled :focus-visible { outline-color: var(--color-primary); }
+.nav .wordmark { color: var(--color-white); }
+.nav__menu { gap: 32px; }
+.nav__menu > a:not(.btn)::after { background: var(--color-white); }
+.nav__menu > a.is-active::after { right: 0; }
+.nav__toggle-bar { background: var(--color-white); }
+.nav :focus-visible { outline-color: var(--color-white); }
+@media (max-width: 960px) {
+  .nav__menu { background: color-mix(in srgb, var(--color-mist) 82%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: var(--color-ink); border-bottom-color: var(--color-light-blue); }
+  .nav__menu > a:not(.btn) { transition: color .2s ease, translate .25s ease; }
+  .nav__menu > a:not(.btn)::after { height: 2px; background: var(--color-primary); }
+  .nav__menu > a:not(.btn):hover, .nav__menu > a:not(.btn):active, .nav__menu > a.is-active { color: var(--color-primary); translate: 8px 0; }
+  .nav__menu .btn--white { background: var(--color-primary); color: var(--color-white); }
+  .nav__menu :focus-visible { outline-color: var(--color-primary); }
+}
+
+
+/* ---------- Startpagina · het mistige bos, het woord wit erover ---------- */
+.hero {
+  position: relative; overflow: hidden; margin-top: calc(-1 * var(--nav-h));
+  min-height: 100svh; display: flex; color: var(--color-white); background: var(--color-ink);
+}
+.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.js .hero__img { scale: 1.12; transition: scale 4s cubic-bezier(.2, .7, .2, 1); }
+.js .hero.is-in .hero__img { scale: 1; }
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(22, 34, 46, .9) 0%, rgba(22, 34, 46, .35) 45%, rgba(22, 34, 46, .2) 70%, rgba(22, 34, 46, .55) 100%);
+}
+.hero__inner {
+  position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end;
+  padding-top: calc(var(--nav-h) + var(--space-l)); padding-bottom: var(--space-l);
+}
+.hero__kicker { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-light-blue); }
+.hero__word {
+  font-family: var(--font-display); font-weight: 600; color: var(--color-white);
+  /* het woord vult ongeveer de helft van de breedte van de inhoud */
+  font-size: calc(min(var(--content), 100vw - 2 * var(--gutter)) / 9); line-height: 1; letter-spacing: -0.02em;
+  white-space: nowrap; margin: var(--space-s) 0 var(--space-m) -0.02em;
+}
+.hero__word .l { display: inline-block; }
+.js .hero__word .l { opacity: 0; translate: 0 .25em; transition: opacity 1s ease, translate 1.1s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i) * 70ms + 200ms); }
+.js .hero.is-in .hero__word .l { opacity: 1; translate: none; }
+.hero__br { display: none; }
+.hero__foot { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-m); flex-wrap: wrap; padding-top: var(--space-m); border-top: 1px solid rgba(255, 255, 255, .35); }
+.hero__slogan { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.2; }
+.hero :focus-visible { outline-color: var(--color-white); }
+
+
+/* ---------- Betekenis · rustig, zoals versie 1: foto naast tekst op mist ---------- */
+.word { background: var(--color-mist); color: var(--color-ink); padding: var(--section) 0; overflow: hidden; }
+.word__split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-xl); align-items: center; }
+.word__photo { margin: 0; overflow: hidden; aspect-ratio: 4 / 5; }
+.word__photo img { width: 100%; height: 112%; object-fit: cover; }
+.word__text { display: flex; flex-direction: column; gap: var(--space-s); align-items: flex-start; }
+.word__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(48px, 7vw, 104px); line-height: 1; letter-spacing: -0.02em; color: var(--color-primary); }
+.word__text .quote { margin: var(--space-xs) 0; }
+.word__roots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-m); width: 100%; margin: var(--space-xs) 0; }
+.word__roots div { padding-top: var(--space-s); border-top: 2px solid var(--color-sage); }
+.word__roots dt { font-family: var(--font-display); font-weight: 600; font-size: 28px; color: var(--color-primary); }
+.word__roots dd { margin: 6px 0 0; font-size: 16px; line-height: 1.6; }
+.word__origin { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-m); align-items: center; margin-top: var(--space-xl); padding: var(--space-l); background: var(--color-sand); }
+.word__year { font-family: var(--font-display); font-weight: 600; font-size: clamp(56px, 7vw, 96px); line-height: 1; letter-spacing: -0.02em; color: var(--color-primary); }
+.word__origin .body { max-width: 60ch; }
+.word__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-m); margin-top: var(--space-l); }
+.word__steps li { display: flex; flex-direction: column; gap: var(--space-xs); padding-top: var(--space-s); border-top: 2px solid var(--color-sage); }
+.word__steps b { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--color-primary); }
+.word__steps strong { font-family: var(--font-display); font-weight: 600; font-size: 24px; line-height: 1.2; color: var(--color-ink); }
+.word__steps span { font-size: 16px; line-height: 1.55; }
+
+
+/* ---------- Pauze · foto over de volle breedte ---------- */
+.band { background: var(--color-mist); color: var(--color-primary); padding: var(--section) 0; }
+.band__inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.band__inner::before { content: ""; width: 64px; height: 4px; margin-bottom: var(--space-m); background: var(--color-sage); }
+.band__quote { font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 3.2vw, 48px); line-height: 1.25; letter-spacing: -0.01em; max-width: 24ch; margin-top: var(--space-s); }
+
+
+/* ---------- De vier werelden · de foto blijft open, enkel onderaan een donkere gloed achter de tekst ---------- */
+.world { position: relative; overflow: hidden; background: var(--color-ink); color: var(--color-white); }
+.world__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.world::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(22, 34, 46, .92) 0%, rgba(22, 34, 46, .78) 35%, rgba(22, 34, 46, .5) 68%, rgba(22, 34, 46, .12) 100%);
+}
+.world :focus-visible { outline-color: var(--color-white); }
+.world__grid {
+  position: relative; z-index: 2; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-xl); align-items: center; padding-top: var(--space-xl); padding-bottom: var(--space-xl);
+}
+.world__text { align-self: end; text-shadow: 0 1px 16px rgba(22, 34, 46, .45); }
+.world--flip .world__media { order: 2; }
+/* film en fles overlappen elkaar */
+.world__media { position: relative; justify-self: center; padding: 0 12% 10% 0; }
+.world--flip .world__media { padding: 0 0 10% 12%; }
+.world__video { height: min(700px, calc(100svh - 2 * var(--space-xl))); aspect-ratio: 9 / 16; overflow: hidden; margin: 0; background: var(--color-ink); box-shadow: 0 24px 48px rgba(22, 34, 46, .22); }
+.world__video video { width: 100%; height: 100%; object-fit: cover; }
+.world__bottle { position: absolute; right: 0; bottom: 0; width: 46%; aspect-ratio: 1; object-fit: cover; border: 8px solid var(--color-sage); box-shadow: 0 16px 32px rgba(22, 34, 46, .3); }
+.world--flip .world__bottle { right: auto; left: 0; }
+.world__text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-s); }
+.world__index { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-light-blue); }
+.world__index span { display: grid; place-items: center; width: 40px; height: 40px; background: var(--color-sage); color: var(--color-ink); letter-spacing: 0.04em; }
+.world__name { font-family: var(--font-display); font-weight: 600; font-size: clamp(52px, 7vw, 112px); line-height: .95; letter-spacing: -0.02em; color: var(--color-white); }
+.world__slogan { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.25; color: var(--color-light-blue); }
+.world__body { font-size: 17px; line-height: 1.65; max-width: 540px; }
+.world__notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-m); width: 100%; max-width: 560px; margin: var(--space-xs) 0 var(--space-s); padding-top: var(--space-s); border-top: 1px solid var(--color-sage); }
+.world__notes dt { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-sage); }
+.world__notes dd { margin-top: 4px; font-size: 15px; line-height: 1.45; }
+
+
+/* ---------- Storyfilm · de film loopt rechts, de storyline volgt links ---------- */
+.story { position: relative; background: var(--color-light-blue); color: var(--color-ink); padding: var(--space-xl) 0; }
+.story__grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-xl); align-items: center; }
+.story__text { display: flex; flex-direction: column; gap: var(--space-s); align-items: flex-start; }
+.story__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 2.4vw, 36px); line-height: 1.15; color: var(--color-ink); margin-top: var(--space-xs); }
+/* de vijf zinnen liggen op elkaar; enkel die van het huidige moment is zichtbaar */
+.story__line { display: grid; width: 100%; margin-top: var(--space-l); }
+.story__line > span {
+  grid-area: 1 / 1; align-self: start;
+  font-family: var(--font-display); font-weight: 500; font-size: clamp(40px, 4.8vw, 76px); line-height: 1.1; letter-spacing: -0.01em; color: var(--color-primary);
+}
+/* de oude zin verdwijnt snel, de nieuwe komt woord per woord op, gelijk met de beeldwissel */
+.story__line .w { display: inline-block; opacity: 0; translate: 0 .3em; transition: opacity .3s ease, translate .3s ease; }
+.story__line .is-current .w { opacity: 1; translate: none; transition: opacity .6s ease, translate .7s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(.15s + var(--w) * 160ms); }
+.story__film { position: relative; justify-self: end; height: min(880px, calc(100svh - var(--nav-h) - 2 * var(--space-s))); aspect-ratio: 9 / 16; overflow: hidden; margin: 0; background: #0d151d; box-shadow: 0 24px 48px rgba(22, 34, 46, .18); }
+/* scale verbergt de donkere rand van ~4px die in de film zelf zit */
+.story__video { width: 100%; height: 100%; object-fit: cover; scale: 1.02; }
+.story__sound {
+  position: absolute; right: 12px; bottom: 12px; padding: 10px 14px; background: rgba(22, 34, 46, .6); color: var(--color-white);
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background-color .25s ease;
+}
+.story__sound:hover { background: var(--color-primary); }
+.story__film :focus-visible { outline-color: var(--color-white); outline-offset: -4px; }
+
+
+/* ---------- Instagram · één grote post met kleinere ernaast ---------- */
+.insta { background: var(--color-mist); color: var(--color-ink); padding: var(--section) 0; }
+.insta__head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-m); flex-wrap: wrap; margin-bottom: var(--space-l); }
+.insta__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 4vw, 60px); line-height: 1.08; letter-spacing: -0.01em; color: var(--color-primary); margin-top: var(--space-s); }
+.insta__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-s); }
+.insta__grid li { overflow: hidden; }
+.insta__grid img { width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; }
+.insta__big { grid-column: span 2; grid-row: span 2; }
+
+
+/* ---------- Geurtest · op inkt ---------- */
+.quiz-section { background: var(--color-mist); color: var(--color-ink); }
+.quiz-section .quiz__panel { background: var(--color-white); }
+.quiz-section__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 4vw, 60px); line-height: 1.08; letter-spacing: -0.01em; color: var(--color-primary); margin-top: 14px; }
+.quiz-section .section-head { max-width: 860px; }
+.quiz-section .quiz__panel { color: var(--color-ink); }
+.quiz-section .quiz__panel :focus-visible { outline-color: var(--color-primary); }
+
+
+/* ---------- Staaltje · collage naast het formulier, op blauw ---------- */
+/* lichter blauw dan de hoofdkleur, zodat het lichtblauwe formulier erop blijft opvallen */
+.sample { --sample-bg: var(--color-primary); background: var(--sample-bg); padding: var(--section) 0; overflow: hidden; }
+.sample__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-xl); align-items: center; }
+.sample__collage { position: relative; padding: 0 22% 18% 0; }
+.sample__photo { margin: 0; overflow: hidden; }
+.sample__photo img { width: 100%; height: 100%; object-fit: cover; }
+.sample__photo--main { aspect-ratio: 4 / 5; }
+.sample__photo--over { position: absolute; right: 0; bottom: 0; width: 46%; aspect-ratio: 3 / 4; box-shadow: 0 0 0 10px var(--sample-bg); }
+
+
+/* ==========================================================
+   Uit versie 1: storys, geurkaarten en feiten
+   ========================================================== */
+/* ---------- Storys ---------- */
+.storys { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-m); }
+.storys img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; }
+@media (max-width: 960px) {
+  .storys {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 62%;
+    overflow-x: auto; scroll-snap-type: x mandatory; gap: var(--space-s);
+    margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter);
+    scrollbar-width: none;
+  }
+  .storys::-webkit-scrollbar { display: none; }
+  .storys li { scroll-snap-align: start; }
+}
+@media (min-width: 600px) and (max-width: 960px) { .storys { grid-auto-columns: 34%; } }
+
+/* ---------- Geurkaarten ---------- */
+/* Elke kaart deelt dezelfde rijen (beeld, label, titel, zin, noten, knop), zodat alles op één lijn staat */
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: var(--space-m); row-gap: 0; }
+.card { background: var(--color-white); display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; margin-bottom: var(--space-m); }
+.card__img { width: 100%; aspect-ratio: 294 / 282; object-fit: cover; }
+.card__body { grid-row: 2 / span 5; display: grid; grid-template-rows: subgrid; row-gap: 12px; justify-items: start; align-items: start; padding: var(--space-m); }
+.card__body .h2 { margin-top: 2px; }
+.card__body .btn { margin-top: 0; }
+
+.notes { width: 100%; border-top: 1px solid var(--color-light-blue); border-bottom: 1px solid var(--color-light-blue); padding: 12px 0; }
+.notes__title {
+  font-weight: 700; font-size: 16px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink);
+  padding: 4px 0;
+}
+.notes__list { display: grid; margin-top: 12px; }
+.notes__list > div { display: flex; gap: 12px; font-size: 15px; line-height: 1.5; }
+.notes__list > div + div { margin-top: 12px; }
+.notes__list dt { width: 52px; flex: none; color: var(--color-primary); }
+
+@media (max-width: 1100px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+/* ---------- Drie korte feiten ---------- */
+.facts { padding: var(--space-xl) 0; }
+.facts__grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.facts__item { padding: 0 var(--space-l); border-left: 1px solid var(--color-light-blue); }
+.facts__item:first-child { padding-left: 0; border-left: 0; }
+.facts__num { font-family: var(--font-display); font-weight: 600; font-size: clamp(48px, 6vw, 80px); line-height: 1; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.facts__text { margin-top: var(--space-s); max-width: 260px; font-size: 18px; line-height: 1.5; }
+.facts__item:nth-child(2) { transition-delay: .15s; }
+.facts__item:nth-child(3) { transition-delay: .3s; }
+@media (max-width: 720px) {
+  .facts__grid { grid-template-columns: 1fr; gap: var(--space-m); }
+  .facts__item { padding: var(--space-m) 0 0; border-left: 0; border-top: 1px solid var(--color-light-blue); }
+  .facts__item:first-child { padding-top: 0; border-top: 0; }
+}
+
+
+/* plaats binnen versie 2 */
+.storys-section { background: var(--color-light-blue); }
+#geuren { background: var(--color-light-blue); }
+.facts { background: var(--color-mist); }
+
+
+/* ---------- Kleinere schermen ---------- */
+@media (max-width: 960px) {
+  .word__split, .sample__grid { grid-template-columns: 1fr; gap: var(--space-l); }
+  .word__photo { max-width: 520px; }
+  .word__steps { grid-template-columns: 1fr; }
+  .world__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-l); min-height: 0; }
+  .world__media, .world--flip .world__media { order: 2; padding: 0 12% 10% 0; justify-self: start; }
+  .world--flip .world__bottle { left: auto; right: 0; }
+  .world__video { height: auto; width: min(68vw, 360px); }
+  .world::before { background: linear-gradient(to bottom, rgba(22, 34, 46, .88) 0%, rgba(22, 34, 46, .7) 55%, rgba(22, 34, 46, .35) 100%); }
+  .story__grid { grid-template-columns: minmax(0, 1fr); justify-items: start; gap: var(--space-m); }
+  .story__line { margin-top: var(--space-s); }
+  .story__film { height: auto; width: min(100%, 460px); justify-self: center; }
+  .sample__collage { max-width: 520px; }
+}
+@media (max-width: 600px) {
+  .hero__word { font-size: calc((100vw - 2 * var(--gutter)) / 5.6); }
+  .world__notes { grid-template-columns: 1fr; gap: var(--space-xs); }
+  .word__roots, .word__origin { grid-template-columns: 1fr; }
+  .word__origin { gap: var(--space-xs); padding: var(--space-m); }
+  .insta__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xs); }
+}
+
+/* ---------- Terug naar boven ---------- */
+.to-top {
+  position: fixed; right: var(--space-m); bottom: var(--space-m); z-index: 40;
+  display: grid; place-items: center; width: 52px; height: 52px;
+  background: var(--color-primary); color: var(--color-white); border: 0; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(22, 34, 46, .18);
+  opacity: 0; visibility: hidden; translate: 0 12px;
+  transition: opacity .3s ease, translate .3s ease, visibility .3s, background-color .2s ease;
+}
+.to-top.is-visible { opacity: 1; visibility: visible; translate: none; }
+.to-top:hover { background: var(--color-ink); }
+.to-top:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; }
+@media (max-width: 600px) { .to-top { right: var(--space-s); bottom: var(--space-s); width: 48px; height: 48px; } }
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__img { scale: 1; }
+  .js .hero__word .l { opacity: 1; translate: none; }
+}
